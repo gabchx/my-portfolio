@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'prismjs/themes/prism-tomorrow.css';
+@import 'leaflet/dist/leaflet.css';
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
 
 @layer components {
   .img-select-none {

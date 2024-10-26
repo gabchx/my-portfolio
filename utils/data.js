@@ -1,78 +1,143 @@
-export const projects = [
+export const experience = [
   {
-    title: 'React Reserve',
-    subtitle: 'MERN Stack',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?',
-    image: './project-1.gif',
-    link: 'https://reactbootcamp.com',
+    company: 'OVHcloud',
+    position: 'R&D Quantum Software Engineer Intern',
+    duration: 'April 2024 - Present (7 months)',
+    location: 'Station F - Clichy Levallois, Paris, France',
+    responsibilities: [
+      'Collaborated with a photonic quantum computer team to develop a quantum entropy source as a service for cryptographic use cases.',
+      'Partnered with physicists to advance the adoption of quantum protocols by engineering teams.',
+      'Validated requests for proposals (RFPs) to drive the development of a fully integrated microservices stack, including databases, APIs, workers, a CLI, and performance monitoring tools.',
+      'Utilized Python for developing and implementing quantum algorithms.',
+      'Contributed to performance monitoring solutions to ensure system reliability and efficiency.',
+    ],
   },
   {
-    title: 'React Tracks',
-    subtitle: 'React and Python',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?',
-    image: './project-2.gif',
-    link: 'https://reactbootcamp.com',
+    company: 'AFD Technologies',
+    position: 'Cloud Engineer Intern',
+    duration: 'June 2022 - August 2022 (3 months)',
+    location: 'Paris, Île-de-France, France',
+    responsibilities: [
+      'Managed a multi-account AWS cloud environment to ensure optimal performance and security.',
+      'Developed AWS scripts utilizing Python, Node.js, Lambda, CloudTrail, and EventBridge for automation and efficiency.',
+      'Implemented CI/CD pipelines for Java applications using GitHub, CodeBuild/Deploy, S3, and EC2 to streamline deployment processes.',
+      'Deployed and managed EKS autoscaling clusters using EKS and ECR to handle varying workloads effectively.',
+      'Translated physical infrastructure components into code using Terraform for stateful deployments.',
+      'Led project management efforts employing Agile Scrum methodologies to enhance team collaboration and project delivery.',
+    ],
   },
   {
-    title: 'DevChat',
-    subtitle: 'React and Firebase',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?',
-    image: './project-3.gif',
-    link: 'https://reactbootcamp.com',
-  },
-  {
-    title: 'Epic Todo App',
-    subtitle: 'React Hooks',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?',
-    image: './project-4.gif',
-    link: 'https://reactbootcamp.com',
+    company: 'Oneytrust',
+    position: 'Cybersecurity Intern',
+    duration: 'July 2021 (1 month)',
+    location: 'Lille, Hauts-de-France, France',
+    responsibilities: [
+      'Operated and managed the hierarchy of a company specializing in IT solutions.',
+      'Conducted studies on digital profiling, fraud prevention, and cybersecurity measures to enhance system security.',
+      'Handled level ticketing and infrastructure monitoring to maintain operational integrity.',
+      'Received training in database management and SQL querying to support data-driven decisions.',
+      'Developed DevOps pipelines and engaged in cloud computing tasks to streamline development and deployment processes.',
+    ],
   },
 ];
 
-export const testimonials = [
+export const projects = [
   {
-    quote:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa quod necessitatibus quidem impedit facilis? Distinctio laboriosam veritatis recusandae minus. Voluptatum accusantium hic laudantium soluta ea sapiente cupiditate officia maiores itaque.',
-    image: 'https://randomuser.me/api/portraits/men/1.jpg',
-    name: 'Jesse Hicks',
-    company: 'Zoozle',
+    title: 'Optimised Quantum Gate-based Computing Emulator',
+    subtitle: 'Quantum computing',
+    description:
+      'Homemade drag and drop quantum emulator, made in Rust & Python for resources benchmark.\n',
+    image: './qe.gif',
+    link: 'https://github.com/gabchx/quantum-emulator',
   },
   {
-    quote:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa quod necessitatibus quidem impedit facilis? Distinctio laboriosam veritatis recusandae minus. Voluptatum accusantium hic laudantium soluta ea sapiente cupiditate officia maiores itaque.',
-    image: 'https://randomuser.me/api/portraits/men/94.jpg',
-    name: 'Ruben Alvarez',
-    company: 'Dooble.io',
+    title:
+      'Deep learning for person Re-Identification in video assets, graph based aproach',
+    subtitle: 'Reasearch Project',
+    description:
+      'The project is involved using Deep Learning to re-identify individuals across video feeds.',
+    image: './traker.gif',
+    link: 'https://www.linkedin.com/in/gabriel-chaix/details/projects/',
+  },
+  {
+    title: 'Knapsack problem, Technical interview',
+    subtitle: 'Graph Theory',
+    description: 'Constraint Satisfaction aproach and Greedy Search',
+    image: './knapsack.gif',
+    link: 'https://drive.google.com/drive/folders/1xkx61aSz4FLB21zlgwsgqkKbDCs0eCtd?usp=share_link',
+  },
+  {
+    title: 'MinMax for Ultimate Tic Tac Toe',
+    subtitle: 'Graph Theory',
+    description: 'Winner of an algoritm battle.',
+    image: './u3t.png',
+    link: 'https://drive.google.com/drive/folders/1tCjGWoQH1jVu4k3t7YOX5WxWVF6awE2L?usp=share_link',
   },
 ];
 
 export const skills = [
   {
-    title: 'C#',
-    image: './c--4.svg',
+    title: 'Python',
+    image: './python.png',
+  },
+  { title: 'Rust', image: './rust.png' },
+  {
+    title: 'Tensorflow',
+    image: './tf.png',
   },
   {
-    title: 'Apple Shortcuts',
-    image: './appleshortcuts.png',
+    title: 'Qiskit',
+    image: './qiskit.png',
   },
   {
-    title: 'Next.js',
-    image: './nextjs.png',
+    title: 'Kubernetes',
+    image: './k8s.png',
   },
   {
-    title: 'NodeJS',
+    title: 'Linux',
+    image: './linux.png',
+  },
+  {
+    title: 'Node.js',
     image: './node-js.png',
   },
   {
-    title: 'Amazon Web Services',
+    title: 'Cloud Services',
     image: './aws.png',
   },
+];
 
-  { title: 'Terraform', image: './terraform.png' },
+export const contact = {
+  name: 'Gabriel Chaix',
+  email: 'hi@gab.cx',
+  cv: {
+    url: 'https://drive.google.com/uc?export=download&id=1kfWLjW7ZgV7GYvPzJt2VroiTZ4cs1ebo',
+  },
+  linkedin: {
+    url: 'https://www.linkedin.com/in/gabriel-chaix/',
+    text: 'linkedin.com/in/gabriel-chaix/',
+  },
+  github: {
+    url: 'https://github.com/gabchx',
+    text: 'github.com/gabchx',
+  },
+};
 
-  { title: 'Linux', image: './linux.png' },
+// Define the places you've been to
+export const places = [
+  {
+    id: 1,
+    name: 'Paris, France',
+    position: [48.8566, 2.3522],
+  },
+  {
+    id: 2,
+    name: 'New York, USA',
+    position: [40.7128, -74.006],
+  },
+  {
+    id: 3,
+    name: 'Tokyo, Japan',
+    position: [35.6762, 139.6503],
+  },
 ];

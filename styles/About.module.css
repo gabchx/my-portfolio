@@ -1,0 +1,10 @@
+/* About.module.css */
+.fadingBorder {
+  mask: radial-gradient(ellipse, black 5%, transparent 100%);
+  -webkit-mask: radial-gradient(ellipse, black 5%, transparent 100%);
+}
+
+.zoomedImage {
+  transform: scale(1.6);
+  /* Adjust the scale factor as needed */
+}
