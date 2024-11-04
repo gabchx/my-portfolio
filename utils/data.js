@@ -19,7 +19,6 @@ export const experience = [
     location: 'Paris, Île-de-France, France',
     responsibilities: [
       'Managed a multi-account AWS cloud environment to ensure optimal performance and security.',
-      'Developed AWS scripts utilizing Python, Node.js, Lambda, CloudTrail, and EventBridge for automation and efficiency.',
       'Implemented CI/CD pipelines for Java applications using GitHub, CodeBuild/Deploy, S3, and EC2 to streamline deployment processes.',
       'Deployed and managed EKS autoscaling clusters using EKS and ECR to handle varying workloads effectively.',
       'Translated physical infrastructure components into code using Terraform for stateful deployments.',

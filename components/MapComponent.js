@@ -76,7 +76,7 @@ const MapComponent = ({ places }) => {
 
   return (
     <MapContainer
-      center={[48.8566, 2.3522]} // Center the map to Paris
+      center={[44.8566, 2.3522]} // Center the map to Paris
       zoom={2}
       scrollWheelZoom={false}
       style={{ height: '100%', width: '100%' }} // Ensure the map fills its container
