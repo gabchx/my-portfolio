@@ -6,7 +6,7 @@ module.exports = {
    * Tell Next.js where the `public` folder is.
    * Replace `nextjs-github-pages` with your Github repo project name.
    */
-  assetPrefix: isProd ? '/my-portfolio/' : '',
+  ...(isProd && { assetPrefix: '/' }),
   /**
    * Disable server-based image optimization.
    *
@@ -14,5 +14,14 @@ module.exports = {
    */
   images: {
     unoptimized: true,
+  },
+
+  reactStrictMode: true,
+  // Add other configurations
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.devtool = 'source-map';
+    }
+    return config;
   },
 };

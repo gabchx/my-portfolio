@@ -1,161 +1,161 @@
-# Next.js Github Pages
+# Gabriel Chaix - Portfolio
 
-Deploy Next.js to Github Pages with Github Actions. 👉 [View the deployed app](https://gregrickaby.github.io/nextjs-github-pages/)
+![Portfolio Logo](./public/thtore.svg)
 
----
+Welcome to Gabriel Chaix's portfolio! This personal website showcases my skills, projects, experience, and more. Built with [Next.js](https://nextjs.org/) and styled using [Tailwind CSS](https://tailwindcss.com/), this portfolio is optimized for performance, accessibility, and responsiveness.
 
-Vercel promotes itself as _"The easiest way to deploy your Next.js app"_ and Netlify offers a similar service. However, both Vercel and Netlify really want you on _their platforms_. I'm interested in owning my own data and wanted to see if I could deploy a Next.js app to Github Pages.
+## Table of Contents
 
-During my research, **I've found very little documentation around deploying a static Next.js app to Github Pages.** I spent an entire Saturday working through it and want to share what I learned with you.
+- [Features](#features)
+- [Demo](#demo)
+- [Technologies](#technologies)
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [Clone the Repository](#clone-the-repository)
+  - [Environment Variables](#environment-variables)
+  - [Using Docker](#using-docker)
+  - [Using Docker Compose](#using-docker-compose)
+  - [Running Locally](#running-locally)
+- [Scripts](#scripts)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-> Update: Vercel has since published an [official example](https://github.com/vercel/next.js/tree/canary/examples/github-pages). I recommend you take a look at the official example before making any major decisions.
+## Features
 
----
+- **Responsive Design**: Optimized for desktops, tablets, and mobile devices.
+- **Dynamic Routing**: Blog section with dynamic routes.
+- **Contact Form**: Send messages directly from the website.
+- **Interactive Map**: Displaying my location using Leaflet.
+- **Project Showcase**: Displaying past projects with detailed descriptions.
+- **Dark Mode**: Toggle between light and dark themes.
 
-## Configure Next.js
+## Demo
 
-In order to get assets to display correctly, you'll need to prefix the assets directory. Additionally, you'll need to disable [automatic image optimization](https://nextjs.org/blog/next-12-3#disable-image-optimization-stable) since _dynamic features don't work_ when using `next export`.
+[Visit the Live Demo](https://your-portfolio-domain.com)
 
-1. Create `next.config.js` file
-2. Add the following:
+## Technologies
 
-```js[class="line-numbers"]
-// next.config.js
-const isProd = process.env.NODE_ENV === 'production'
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Docker](https://www.docker.com/)
+- [Node.js](https://nodejs.org/)
+- [Leaflet](https://leafletjs.com/)
+- [Swiper.js](https://swiperjs.com/)
 
-module.exports = {
-  assetPrefix: isProd ? '/your-github-repo-name/' : '',
-  images: {
-    unoptimized: true,
-  },
-}
-```
+## Installation
 
-3. Save the `next.config.js`
+### Prerequisites
 
-4. Finally, place a `.nojekyll` file in the `/public` directory to disable Github Pages from trying to create a [Jekyll](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/) website.
+- [Node.js](https://nodejs.org/) (v14 or later)
+- [Docker](https://www.docker.com/) (optional, for containerization)
+- [Git](https://git-scm.com/)
 
-```treeview
-.
-├── pages/
-├── public/
-│   └── .nokjekyll
-├── styles/
-├── next.config.js
-```
-
-Perfect! This is all you need to configure Next.js to work on Github Pages.
-
-> Heads up! Github Pages _does not_ support serverless functions. This means dynamic functionality will be disabled. [Learn more](https://nextjs.org/docs/advanced-features/static-html-export#unsupported-features)
-
----
-
-## Configure Github Repository
-
-Next you need to configure Github for automated deployments via Github Actions.
-
-### Generate Deploy Keys
-
-Before Github Actions can commit and push to the `gh-pages` branch, it needs to authenticate. You'll need to generate new Public and Private keys. _Don't worry, these new keys won't override your personal SSH keys._
-
-In your Next.js app directory, run the following command:
+### Clone the Repository
 
 ```bash
-ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
+git clone https://github.com/your-username/my-portfolio.git
+cd my-portfolio
 ```
 
-Open the keys in your code editor, because in a minute, you're going to copy and paste the contents into your Github repository settings.
+### Environment Variables
 
-### Setup Deploy Key
+Create a `.env.local` file in the root directory and add the following environment variables:
 
-In your Github repository:
+```env
+# .env.local
 
-1. Go to **Settings --> Deploy Keys**
-2. Add Title: `Public key of ACTIONS_DEPLOY_KEY`
-3. Add Key: (paste the public key)
-4. Check: Allow write access
-5. Click: Add key
+# Server Port
+PORT=3000
 
-![screenshot of github deploy key setup](https://user-images.githubusercontent.com/200280/203811622-861c6c94-3f3a-4048-8e78-3cc50589c0bc.png)
+# Free
+FREE_USER=
+FREE_PASS=
 
-### Setup Private Key
+# Nodemailer SMTP configuration
+SMTP_HOST=
+SMTP_PORT=
+SMTP_USER=
+SMTP_PASS=
 
-In your Github repository:
+# Sender email address
+SMTP_FROM_EMAIL=
 
-1. Go to **Settings --> Secrets --> Actions**
-2. Add Click: Add a new secret
-3. Add Name: `ACTIONS_DEPLOY_KEY`
-4. Add Value: (paste the private key)
-5. Click: Add key
-
-![screenshot of github action secret key setup](https://user-images.githubusercontent.com/200280/203811897-6b8dcace-ba95-4b7b-86a7-84fbd951a98c.png)
-
-Now Github Actions will be able to authenticate with your repository. You can safely delete the two keys from the Next.js app directory.
-
-### Setup Github Actions
-
-This is where the magic happens! The [workflow file](https://github.com/gregrickaby/nextjs-github-pages/blob/main/.github/workflows/deploy.yml) is running a few commands to automatically deploy the app when you push to the `main` branch.
-
-![screenshot of github actions](https://user-images.githubusercontent.com/200280/203812362-f733579f-bd09-4a4e-997d-fba74e02e839.png)
-
-My Github Action workflow uses [this action](https://github.com/peaceiris/actions-gh-pages) to handle the actual deployment. I went with a third-party action, because I don't want to have to maintain it.
-
-Here are the Workflow steps:
-
-1. Check out `main` branch
-2. Setup Node
-3. Get NPM's cache from the last build 🚀
-4. Build the app
-5. Deploy the app to the `/gh-pages` branch (using a the `ACTIONS_DEPLOY_KEY` you generated earlier).
-
-Here's the workflow in `.yml`:
-
-```yml
-name: Deploy to Github Pages
-
-on:
-  push:
-    branches:
-      - main
-
-  workflow_dispatch:
-
-jobs:
-  deployment:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 'lts/*'
-          cache: 'npm'
-
-      - name: Build
-        run: |
-          npm i
-          npm run build
-          npm run export
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./out
 ```
 
-### Activate Github Pages
+> **Note:** Replace the placeholder values with your actual credentials. Ensure that `.env.local` is added to `.gitignore` to prevent sensitive information from being exposed.
 
-This is the easiest step, because as soon as Github recognizes there's a `/gh-pages` branch, it'll automatically activate the Github Pages feature!
+### Using Docker
 
-In a moment, you should be able to see your Next.js app at `https://your-username.github.io/your-repo-name/`
+#### Build the Docker Image
+
+```bash
+docker build -t my-portfolio .
+```
+
+#### Run the Docker Container
+
+```bash
+docker run -d -p 3000:3000 --env-file .env.local my-portfolio
+```
+
+### Using Docker Compose
+
+Alternatively, you can use Docker Compose to manage the container:
+
+```bash
+docker-compose up -d
+```
+
+### Running Locally
+
+1. **Install Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+2. **Run the Development Server**
+
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Scripts
+
+- `npm run dev` - Runs the app in development mode.
+- `npm run build` - Builds the app for production.
+- `npm run start` - Starts the production server.
+- `npm run export` - Exports the app as a static site.
+
+## Deployment
+
+The application can be deployed using platforms that support Docker containers such as [Vercel](https://vercel.com/), [Heroku](https://www.heroku.com/), or any other cloud service provider.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a pull request
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+## Contact
+
+- **Email:** [your.email@example.com](mailto:your.email@example.com)
+- **LinkedIn:** [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- **GitHub:** [github.com/your-username](https://github.com/your-username)
 
 ---
 
-## Wrap up
-
-Thanks for reading and I hope this helps. If you noticed someting wrong, please [file an issue](https://github.com/gregrickaby/nextjs-github-pages/issues). Good luck! 🍻
-
----
+Made by Gabriel Chaix
