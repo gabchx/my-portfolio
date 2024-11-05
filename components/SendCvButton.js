@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { XIcon } from '@heroicons/react/solid'; // Ensure you have Heroicons installed
 import { toast } from 'react-toastify'; // Import toast from React Toastify
+import { contact } from '../utils/data';
 
 Modal.setAppElement('#__next'); // Accessibility for Next.js
 
@@ -73,7 +74,8 @@ export default function SendCvButton() {
     <>
       {/* Get my CV Button */}
       <button
-        onClick={() => setModalIsOpen(true)}
+        //onClick={() => setModalIsOpen(true)}
+        href={contact.cv.url}
         className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
       >
         Get my CV
