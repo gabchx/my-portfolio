@@ -74,8 +74,14 @@ export default function SendCvButton() {
     <>
       {/* Get my CV Button */}
       <button
-        //onClick={() => setModalIsOpen(true)}
-        href={contact.cv.url}
+        onClick={() => {
+          const link = document.createElement('a');
+          link.href = contact.cv.url;
+          link.download = '';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }}
         className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
       >
         Get my CV

@@ -128,5 +128,5 @@ export const places = [
     id: 1,
     name: 'Paris, France',
     position: [48.8566, 2.3522],
-  }
+  },
 ];

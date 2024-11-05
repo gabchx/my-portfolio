@@ -68,12 +68,7 @@ export default function Contact() {
               <h2 className="title-font font-semibold text-white tracking-widest text-xs">
                 EMAIL
               </h2>
-              <a
-                href={`mailto:${contact.email}`}
-                className="text-blue-400 leading-relaxed"
-              >
-                {contact.email}
-              </a>
+              <a className="text-blue-400 leading-relaxed">{contact.email}</a>
             </div>
             {/* LinkedIn Link */}
             <div className="lg:w-1/2 px-6 mt-4">
@@ -108,8 +103,15 @@ export default function Contact() {
         <div className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
           <form
             name="contact"
-            //onSubmit={handleSubmit}
-            action="mailto:hi@gab.cx"
+            action={`mailto:hi@gab.cx?subject=Contact%20Form%20from%20${encodeURIComponent(
+              name
+            )}&body=Name:%20${encodeURIComponent(
+              name
+            )}%0AEmail:%20${encodeURIComponent(
+              email
+            )}%0AMessage:%20${encodeURIComponent(message)}`}
+            method="POST" // added to handle form submission
+            encType="text/plain" // added to ensure plain text encoding
             className="flex flex-col"
           >
             <h2 className="text-white sm:text-4xl text-3xl mb-1 font-medium title-font">
